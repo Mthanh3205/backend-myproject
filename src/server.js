@@ -4,13 +4,18 @@ import cors from 'cors';
 import sequelize from './config/db.js';
 
 // Load biến môi trường
-dotenv.config({ path: './.env' });
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://myprojects.id.vn',
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Import Models
@@ -47,7 +52,7 @@ const startServer = async () => {
     console.log('DB synced successfully');
 
     app.listen(PORT, () => {
-      console.log(`Server run at http://localhost:${PORT}`);
+      console.log(`Visit your app at https://myprojects.id.vn`);
     });
   } catch (err) {
     console.error('Error connect DB:', err);
