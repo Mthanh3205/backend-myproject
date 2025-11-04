@@ -1,6 +1,5 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import cors from 'cors';
 import sequelize from './config/db.js';
 
 // Load biến môi trường
@@ -9,13 +8,6 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(
-  cors({
-    origin: 'https://myprojects.id.vn',
-    credentials: true,
-  })
-);
 app.use(express.json());
 
 // Import Models
